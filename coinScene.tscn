@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw8benkbyak4w"]
+
+[ext_resource type="Texture2D" uid="uid://diqlnm8ms2yvg" path="res://assets/sprites/collectibles/COINASSET.png" id="1_hw3x2"]
+[ext_resource type="Script" path="res://coinScene.gd" id="1_wil4b"]
+[ext_resource type="AudioStream" uid="uid://mn1uqe3m0bax" path="res://assets/music/effects/mario_coin_sound.mp3" id="3_wx7or"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gdsni"]
+radius = 96.2481
+height = 266.0
+
+[node name="coinNode" type="Node2D"]
+position = Vector2(11, -10)
+script = ExtResource("1_wil4b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-10.7499, 9.75)
+scale = Vector2(0.0761713, 0.0761719)
+texture = ExtResource("1_hw3x2")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("CapsuleShape2D_gdsni")
+
+[node name="coinSound" type="AudioStreamPlayer" parent="Sprite2D/Area2D"]
+stream = ExtResource("3_wx7or")
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]

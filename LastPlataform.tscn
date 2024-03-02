@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyffffrh2o2qd"]
+
+[ext_resource type="Script" path="res://LastPlataform.gd" id="1_df51y"]
+[ext_resource type="AudioStream" uid="uid://u7e6xui3ayx1" path="res://assets/music/effects/good-luck_Z7d6OfC.mp3" id="2_w11w5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t6a5k"]
+size = Vector2(31, 26)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_df51y")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(5.5, -5)
+shape = SubResource("RectangleShape2D_t6a5k")
+
+[node name="GoodLuck" type="AudioStreamPlayer" parent="Area2D"]
+stream = ExtResource("2_w11w5")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

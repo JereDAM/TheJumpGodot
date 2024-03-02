@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtr1ulrcanpbd"]
+
+[ext_resource type="Texture2D" uid="uid://bur5t8dbnqux8" path="res://assets/sprites/collectibles/aesthetics-cute-8bit-pixel-heart-shape-decoration-png.webp" id="1_fl5lc"]
+[ext_resource type="Script" path="res://finish.gd" id="1_ik3j0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_305ks"]
+size = Vector2(36, 65.5)
+
+[node name="Finish" type="Node2D"]
+script = ExtResource("1_ik3j0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(55.75, -47.5)
+scale = Vector2(0.0565104, 0.0530134)
+texture = ExtResource("1_fl5lc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(56, -32.75)
+shape = SubResource("RectangleShape2D_305ks")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

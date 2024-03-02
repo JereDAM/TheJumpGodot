@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://dhpvuipu1c6sc"]
+
+[ext_resource type="Script" path="res://enemy1Bee.gd" id="1_c3web"]
+[ext_resource type="Texture2D" uid="uid://msankfpsyns7" path="res://assets/sprites/mobs/Small Bee/Fly/Fly-Sheet.png" id="1_uumni"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0ugu"]
+atlas = ExtResource("1_uumni")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eanr"]
+atlas = ExtResource("1_uumni")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqdxb"]
+atlas = ExtResource("1_uumni")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te8yx"]
+atlas = ExtResource("1_uumni")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1655e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0ugu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eanr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqdxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te8yx")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2xao"]
+size = Vector2(23, 26)
+
+[node name="Enemy1" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_c3web")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_1655e")
+animation = &"fly"
+frame_progress = 0.359177
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_g2xao")

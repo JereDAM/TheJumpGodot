@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://24f6mamans70"]
+
+[sub_resource type="GDScript" id="GDScript_clyec"]
+script/source = "extends Node2D
+
+
+func _on_area_2d_body_entered(body):
+	print(\"ENTRAR FUERA\")
+	print(body.name)
+	if body.name == \"CharacterBody2D\":
+		body.die()
+		GlobalScript.score += 1
+		var counterDeath = get_node(\"/root/Node2D/Player/CharacterBody2D/Camera2D/Control/Label\")
+#self.text = str(GlobalScript.score)
+		counterDeath.text = \"Número de muertes: \" + str(GlobalScript.score)
+		#print(GlobalScript.score)
+		print(\"ENTRO DENTRO\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgw6e"]
+size = Vector2(1816, 16)
+
+[node name="DeathArea" type="Node2D"]
+script = SubResource("GDScript_clyec")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_lgw6e")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
